@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endesconcierto | Plataforma Cultural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oro: #e3b04b;
+            --negro-puro: #050505;
+            --negro-trans: rgba(10, 10, 10, 0.95);
+            --blanco-suave: #f0f0f0;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--negro-puro);
+            color: var(--blanco-suave);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+        }
+
+        #home-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--negro-trans);
+            min-height: 100vh;
+            box-shadow: 0 0 100px rgba(0,0,0,1);
+        }
+
+        /* CONTENEDOR HÍBRIDO (VIDEO + IMAGEN) */
+        .header-media-container {
+            width: 100%;
+            height: auto;
+            position: relative;
+            line-height: 0;
+            border-bottom: 3px solid var(--oro);
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Estilos comunes para los medios del header */
+        .header-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 2s ease-in-out; /* Transición suave de 2 segundos */
+        }
+
+        #header-img {
+            position: relative;
+            z-index: 2;
+            opacity: 1;
+        }
+
+        #header-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        /* GRILLA DE LOGOS ARTÍSTICOS */
+        nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            padding: 50px 30px;
+            justify-content: center;
+        }
+
+        .nav-card {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(227, 176, 75, 0.15);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            aspect-ratio: 1 / 1;
+            background: #000;
+        }
+
+        .nav-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.6s ease;
+            filter: grayscale(20%);
+        }
+
+        .nav-card:hover {
+            transform: scale(1.05) translateY(-15px);
+            border-color: var(--oro);
+            box-shadow: 0 20px 40px rgba(227, 176, 75, 0.25);
+            z-index: 10;
+        }
+
+        .nav-card:hover img {
+            transform: scale(1.15);
+            filter: grayscale(0%);
+        }
+
+        /* SECCIONES (PÁGINAS COMPLETAS) */
+        .sub-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--negro-puro);
+            z-index: 100;
+            overflow-y: auto;
+            padding: 50px 8%;
+            animation: fadeInPage 0.6s ease;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-page { display: block; }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--oro);
+            border: 1px solid var(--oro);
+            padding: 12px 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { background: var(--oro); color: #000; }
+
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--oro); 
+            font-size: 3rem;
+            border-bottom: 2px solid var(--oro); 
+            padding-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .content-area { margin-top: 30px; color: #aaa; font-size: 1.1rem; line-height: 1.8; }
+
+        footer { text-align: center; padding: 60px 20px; font-size: 0.7rem; opacity: 0.4; letter-spacing: 3px; }
+
+        @media (max-width: 600px) {
+            nav { grid-template-columns: 1fr 1fr; gap: 15px; padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="home-page">
+        <div class="header-media-container">
+            <img id="header-img" class="header-media" 
+                 src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/blob/11db465ebae4f198debf50175c560e5fa2393a2c/Gemini_Generated_Image_tx1630tx1630tx16%20(1).png?raw=true" 
+                 alt="Portada Endesconcierto">
+            
+            <video id="header-video" class="header-media" autoplay loop muted playsinline>
+                <source src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/raw/5846d6475e8cda510a778dbff85f33b3338fd9fd/202603311256.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <nav>
+            <div class="nav-card" onclick="showPage('page-radio')">
+                <img src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/blob/11db465ebae4f198debf50175c560e5fa2393a2c/Gemini_Generated_Image_samdrysamdrysamd%20(1).png?raw=true" alt="Radio">
+            </div>
+            <div class="nav-card" onclick="showPage('page-arte')">
+                <img src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/blob/11db465ebae4f198debf50175c560e5fa2393a2c/Gemini_Generated_Image_pac7jspac7jspac7%20(1)%20(3).png?raw=true" alt="Arte">
+            </div>
+            <div class="nav-card" onclick="showPage('page-musica')">
+                <img src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/blob/11db465ebae4f198debf50175c560e5fa2393a2c/Gemini_Generated_Image_samdrysamdrysamd%20(2).png?raw=true" alt="Música">
+            </div>
+            <div class="nav-card" onclick="showPage('page-poesia')">
+                <img src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/blob/11db465ebae4f198debf50175c560e5fa2393a2c/Gemini_Generated_Image_pac7jspac7jspac7%20(1)%20(1).png?raw=true" alt="Poesía">
+            </div>
+            <div class="nav-card" onclick="showPage('page-podcast')">
+                <img src="https://github.com/minerosartesanalesunidos2025-cyber/desconcierto-/blob/11db465ebae4f198debf50175c560e5fa2393a2c/Gemini_Generated_Image_pac7jspac7jspac7%20(1)%20(2).png?raw=true" alt="Podcasts">
+            </div>
+        </nav>
+
+        <footer>
+            <p>ENDESCONCIERTO &bull; MONTERÍA &bull; SINÚ &bull; 2026</p>
+        </footer>
+    </div>
+
+    <div id="page-radio" class="sub-page">
+        <div class="back-btn" onclick="closePages()">← Volver</div>
+        <h1>Radio Online</h1>
+        <div class="content-area"><p>Señal en vivo desde el corazón del Sinú.</p></div>
+    </div>
+
+    <div id="page-arte" class="sub-page">
+        <div class="back-btn" onclick="closePages()">← Volver</div>
+        <h1>Galería de Arte</h1>
+        <div class="content-area"><p>Pintura y arte visual de nuestros creadores.</p></div>
+    </div>
+
+    <div id="page-musica" class="sub-page">
+        <div class="back-btn" onclick="closePages()">← Volver</div>
+        <h1>Música Alternativa</h1>
+        <div class="content-area"><p>Sonidos emergentes y ritmos ancestrales.</p></div>
+    </div>
+
+    <div id="page-poesia" class="sub-page">
+        <div class="back-btn" onclick="closePages()">← Volver</div>
+        <h1>Poesía y Oralidad</h1>
+        <div class="content-area"><p>Versos grabados en la memoria del río.</p></div>
+    </div>
+
+    <div id="page-podcast" class="sub-page">
+        <div class="back-btn" onclick="closePages()">← Volver</div>
+        <h1>Podcasts Culturales</h1>
+        <div class="content-area"><p>Diálogos sobre arte, cultura y territorio.</p></div>
+    </div>
+
+    <script>
+        // Lógica para alternar medios del header cada 20 segundos
+        const img = document.getElementById('header-img');
+        const video = document.getElementById('header-video');
+        let showingImage = true;
+
+        setInterval(() => {
+            if (showingImage) {
+                img.style.opacity = '0';
+                video.style.opacity = '1';
+            } else {
+                img.style.opacity = '1';
+                video.style.opacity = '0';
+            }
+            showingImage = !showingImage;
+        }, 20000); // 20000 milisegundos = 20 segundos
+
+        function showPage(pageId) {
+            document.getElementById(pageId).classList.add('active-page');
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePages() {
+            const pages = document.querySelectorAll('.sub-page');
+            pages.forEach(p => p.classList.remove('active-page'));
+            document.body.style.overflow = "auto";
+        }
+    </script>
+</body>
+</html>
